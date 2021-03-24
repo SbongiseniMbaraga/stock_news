@@ -20,12 +20,12 @@ def data():
         title_description = f"TITLE: {article_title}\n\nDESCRIPTION: {article_description}\n\n\n"
 
     account_sid = "ACf6fece104e06565ec1d2e2e9471d437a"
-    auth_token = "05c7c03604579fa181e090ecbdc16d0a"
+    auth_token = "6a3f5e97306c10b116024f587c6f5707"
     client = Client(account_sid, auth_token)
 
     message = client.messages \
         .create(
-            body=f"{get_stock_data}\n{title_description}",
+            body=f"\n{get_stock_data.print_stock_data()}{title_description}",
             from_="+18647124113",
             to="+27823956607"
         )

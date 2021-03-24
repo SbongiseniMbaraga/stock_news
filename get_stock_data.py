@@ -43,13 +43,17 @@ def print_stock_data():
     # print("day before yesterday closing price:", previous_to_yesterday_closing_price)
     # print("difference:", difference)
 
-    increase = 100 * (round(yesterdays_closing_price) - round(previous_to_yesterday_closing_price)) / round(previous_to_yesterday_closing_price)
-    t_increase = f"TSLA up by {round(increase)}%"
+    def get_percentage_increase(yesterdays_closing_price2, previous_to_yesterday_closing_price2):
+        increase = 100 * (round(yesterdays_closing_price2) - round(previous_to_yesterday_closing_price2)) / round(
+            previous_to_yesterday_closing_price2)
+        return print(f"TSLA up by {round(increase)}%")
 
-    decrease = 100 * (round(yesterdays_closing_price) - round(previous_to_yesterday_closing_price)) / round(previous_to_yesterday_closing_price)
-    t_decrease = f"TSLA down by {round(decrease - decrease - decrease)}%"
+    def get_percentage_decrease(yesterdays_closing_price2, previous_to_yesterday_closing_price2):
+        decrease = 100 * (round(yesterdays_closing_price2) - round(previous_to_yesterday_closing_price2)) / round(
+            previous_to_yesterday_closing_price2)
+        return print(f"TSLA down by {round(decrease - decrease - decrease)}%")
 
     if difference < 0:
-        print(t_decrease)
+        get_percentage_decrease(yesterdays_closing_price, previous_to_yesterday_closing_price)
     else:
-        print(t_decrease)
+        get_percentage_increase(yesterdays_closing_price, previous_to_yesterday_closing_price)
