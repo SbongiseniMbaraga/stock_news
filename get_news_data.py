@@ -25,7 +25,7 @@ def data():
 
     message = client.messages \
         .create(
-            body=f"\n{get_stock_data.print_stock_data()}{title_description}",
+            body=f"{get_stock_data.print_stock_data()}{title_description}",
             from_="+18647124113",
             to="+27823956607"
         )
