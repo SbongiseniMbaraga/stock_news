@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 #get stock data
 stock_api_key = "HYH8K48YPWAAFQFT"
 stock_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=TSLA&apikey={stock_api_key}"
-#https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=TSLA&apikey=HYH8K48YPWAAFQFT
 response = requests.get(url=stock_url)
 stock_data = response.json()
 
@@ -35,20 +34,22 @@ def print_stock_data():
         if stock_date == formatted_previous_date:
             closing_date_previous_to_yesterday = closing_price
 
-    difference = float(closing_date_previous_to_yesterday) - float(closing_date_yesterday)
+    difference = float(closing_date_yesterday) - float(closing_date_previous_to_yesterday)
 
     yesterdays_closing_price = float(closing_date_yesterday)
     previous_to_yesterday_closing_price = float(closing_date_previous_to_yesterday)
 
-    if difference < 0:
-        get_percentage_decrease(yesterdays_closing_price, previous_to_yesterday_closing_price)
-    else:
-        get_percentage_increase(yesterdays_closing_price, previous_to_yesterday_closing_price)
+    # print("yesterdays closing price:", yesterdays_closing_price)
+    # print("day before yesterday closing price:", previous_to_yesterday_closing_price)
+    # print("difference:", difference)
 
-def get_percentage_increase(yesterdays_closing_price, previous_to_yesterday_closing_price):
     increase = 100 * (round(yesterdays_closing_price) - round(previous_to_yesterday_closing_price)) / round(previous_to_yesterday_closing_price)
-    return print(f"The Stock Price increased by {round(increase)}%")
+    t_increase = f"TSLA up by {round(increase)}%"
 
-def get_percentage_decrease(yesterdays_closing_price, previous_to_yesterday_closing_price):
-    increase = -100 * (round(yesterdays_closing_price) - round(previous_to_yesterday_closing_price)) / round(previous_to_yesterday_closing_price)
-    return print(f"The Stock Price fell by {round(increase - increase - increase)}%")
+    decrease = 100 * (round(yesterdays_closing_price) - round(previous_to_yesterday_closing_price)) / round(previous_to_yesterday_closing_price)
+    t_decrease = f"TSLA down by {round(decrease - decrease - decrease)}%"
+
+    if difference < 0:
+        print(t_decrease)
+    else:
+        print(t_decrease)
